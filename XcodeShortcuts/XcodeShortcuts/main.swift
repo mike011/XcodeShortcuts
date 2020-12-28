@@ -17,17 +17,22 @@ struct Shortcut {
 var shortcuts = [Shortcut(description:"Find", keys: "⌘ + f"),
                  Shortcut(description:"Replace", keys: "⌘ + ⌥ + f"),
                  Shortcut(description:"Jump to Defintion", keys: "⌘ + ⌃ + j"),
-                 Shortcut(description:"Jump to Defintion", keys: "⌘ + ⌃ + j"),
+                 Shortcut(description:"Jump to Editor", keys: "⌘ + j"),
+                 Shortcut(description:"Jump to Console", keys: "⇧ + ⌘ + c"),
+                 Shortcut(description:"Show Quick Help", keys: "⇧ + ⌃ + ⌘ + ?"),
+                 Shortcut(description:"Show/Hide Debug Area", keys: "⇧ + ⌘ + y"),
+                 Shortcut(description:"Show/Hide Navigator", keys: "⌘ + 0"),
+                 Shortcut(description:"Show/Hide Inspector", keys: "⌥ + ⌘ + 0"),
+                 Shortcut(description:"Show/Hide Console", keys: "⇧ + ⌘ + y"),
                 ]
 
 print("What is the keyboard combination for: ")
 var x = 0
-while(true) {
-    x += 1
-    if (x > 5) {
-        break
-    }
-    var shortcut = shortcuts.randomElement()!
+
+var shuffled = shortcuts.shuffled()
+var answered = [Shortcut]()
+while !shuffled.isEmpty {
+    var shortcut = shuffled.removeFirst()
     print(shortcut.description + ": ", separator: "", terminator: "")
     printCountDown(from: 5)
     print(shortcut.keys)
@@ -37,11 +42,12 @@ while(true) {
         shortcut.timesAnsweredCorrectly += 1
     }
     shortcut.timesAsked += 1
-    print("Press any key to move on to next question")
-    _ = readLine()
+
+    answered.append(shortcut)
 }
 
-print(shortcuts)
+print(answered)
+
 func printCountDown(from amount: Int) {
     var total = amount
     for _ in 0..<amount {
