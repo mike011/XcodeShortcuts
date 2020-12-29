@@ -14,9 +14,10 @@ struct Shortcut {
     var timesAnsweredCorrectly = 0
 }
 
-var shortcuts = [Shortcut(description:"Find", keys: "⌘ + f"),
+var shortcuts = [Shortcut(description:"Find", keys: "⌘f"),
                  Shortcut(description:"Replace", keys: "⌘ + ⌥ + f"),
                  Shortcut(description:"Jump to Defintion", keys: "⌘ + ⌃ + j"),
+                 Shortcut(description:"Go back", keys: "⌘ + ⌃ + ←"),
                  Shortcut(description:"Jump to Editor", keys: "⌘ + j"),
                  Shortcut(description:"Jump to Console", keys: "⇧ + ⌘ + c"),
                  Shortcut(description:"Show Quick Help", keys: "⇧ + ⌃ + ⌘ + ?"),
@@ -34,19 +35,47 @@ var answered = [Shortcut]()
 while !shuffled.isEmpty {
     var shortcut = shuffled.removeFirst()
     print(shortcut.description + ": ", separator: "", terminator: "")
-    printCountDown(from: 5)
+    printCountDown(from: 8 - shortcut.timesAnsweredCorrectly)
     print(shortcut.keys)
     print("Did you get the right answer? y/n")
     let answer = readLine()
-    if answer == "y" {
+    if answer?.lowercased() == "y" {
         shortcut.timesAnsweredCorrectly += 1
+    } else {
+        shortcut.timesAnsweredCorrectly -= 1
     }
+
     shortcut.timesAsked += 1
 
-    answered.append(shortcut)
+    if shortcut.timesAnsweredCorrectly < 3 {
+        shuffled.append(shortcut)
+    } else {
+        answered.append(shortcut)
+    }
 }
 
-print(answered)
+printSummary(for: answered)
+
+func printSummary(for shortcuts: [Shortcut]) {
+    let totals = getTotals(for: shortcuts)
+    print("Summary: ")
+    print("\(totals.0)/\(totals.1) for \(getPercentage(for: totals))%")
+}
+
+func getPercentage(for totals: (Int, Int)) -> String {
+    let percentage = Double(totals.0) / Double(totals.1) * 100.0
+    return String(format: "%.2f", percentage)
+}
+
+func getTotals(for shortcuts: [Shortcut]) -> (Int, Int) {
+    var correct = 0
+    var total = 0
+    for shortcut in shortcuts {
+        correct += shortcut.timesAnsweredCorrectly
+        total += shortcut.timesAsked
+    }
+    return (correct, total)
+}
 
 func printCountDown(from amount: Int) {
     var total = amount
