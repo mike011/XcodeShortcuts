@@ -14,17 +14,17 @@ struct Shortcut {
     var timesAnsweredCorrectly = 0
 }
 
-var shortcuts = [Shortcut(description:"Find", keys: "⌘f"),
+var shortcuts = [Shortcut(description:"Find", keys: "⌘ + f"),
                  Shortcut(description:"Replace", keys: "⌘ + ⌥ + f"),
-                 Shortcut(description:"Jump to Defintion", keys: "⌘ + ⌃ + j"),
-                 Shortcut(description:"Go back", keys: "⌘ + ⌃ + ←"),
-                 Shortcut(description:"Jump to Editor", keys: "⌘ + j"),
-                 Shortcut(description:"Jump to Console", keys: "⇧ + ⌘ + c"),
-                 Shortcut(description:"Show Quick Help", keys: "⇧ + ⌃ + ⌘ + ?"),
-                 Shortcut(description:"Show/Hide Debug Area", keys: "⇧ + ⌘ + y"),
-                 Shortcut(description:"Show/Hide Navigator", keys: "⌘ + 0"),
-                 Shortcut(description:"Show/Hide Inspector", keys: "⌥ + ⌘ + 0"),
-                 Shortcut(description:"Show/Hide Console", keys: "⇧ + ⌘ + y"),
+                 Shortcut(description:"Jump to Defintion", keys: "⌃ + ⌘ + j"),
+//                 Shortcut(description:"Go back", keys: "⌃ + ⌘ + ←"),
+//                 Shortcut(description:"Jump to Editor", keys: "⌘ + j"),
+//                 Shortcut(description:"Jump to Console", keys: "⇧ + ⌘ + c"),
+//                 Shortcut(description:"Show Quick Help", keys: "⇧ + ⌃ + ⌘ + ?"),
+//                 Shortcut(description:"Show/Hide Debug Area", keys: "⇧ + ⌘ + y"),
+//                 Shortcut(description:"Show/Hide Navigator", keys: "⌘ + 0"),
+//                 Shortcut(description:"Show/Hide Inspector", keys: "⌥ + ⌘ + 0"),
+//                 Shortcut(description:"Show/Hide Console", keys: "⇧ + ⌘ + y"),
                 ]
 
 print("What is the keyboard combination for: ")
@@ -32,12 +32,15 @@ var x = 0
 
 var shuffled = shortcuts.shuffled()
 var answered = [Shortcut]()
+
+let start = Date()
 while !shuffled.isEmpty {
     var shortcut = shuffled.removeFirst()
     print(shortcut.description + ": ", separator: "", terminator: "")
     printCountDown(from: 8 - shortcut.timesAnsweredCorrectly)
     print(shortcut.keys)
     print("Did you get the right answer? y/n")
+
     let answer = readLine()
     if answer?.lowercased() == "y" {
         shortcut.timesAnsweredCorrectly += 1
@@ -60,6 +63,8 @@ func printSummary(for shortcuts: [Shortcut]) {
     let totals = getTotals(for: shortcuts)
     print("Summary: ")
     print("\(totals.0)/\(totals.1) for \(getPercentage(for: totals))%")
+
+    print("It took you \(Date().timeIntervalSince(start)) to complete")
 }
 
 func getPercentage(for totals: (Int, Int)) -> String {
@@ -70,7 +75,7 @@ func getPercentage(for totals: (Int, Int)) -> String {
 func getTotals(for shortcuts: [Shortcut]) -> (Int, Int) {
     var correct = 0
     var total = 0
-    for shortcut in shortcuts {
+    shortcuts.forEach { (shortcut) in
         correct += shortcut.timesAnsweredCorrectly
         total += shortcut.timesAsked
     }
@@ -79,6 +84,7 @@ func getTotals(for shortcuts: [Shortcut]) -> (Int, Int) {
 
 func printCountDown(from amount: Int) {
     var total = amount
+
     for _ in 0..<amount {
         print(". ", separator: "", terminator: "")
         do {
