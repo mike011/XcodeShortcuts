@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4C068C472599777000811496 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C068C462599777000811496 /* main.swift */; };
 		4C068C552599778400811496 /* XcodeShortcutsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C068C542599778400811496 /* XcodeShortcutsTests.swift */; };
+		4CD54F6725A012AF002E974C /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD54F6625A012AF002E974C /* Shortcut.swift */; };
+		4CD54F6D25A012CD002E974C /* ShortcutPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD54F6C25A012CD002E974C /* ShortcutPrinter.swift */; };
+		4CD54F7125A01507002E974C /* SessionPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD54F7025A01507002E974C /* SessionPrinter.swift */; };
+		4CD54F7525A015A6002E974C /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD54F7425A015A6002E974C /* ShortcutManager.swift */; };
+		4CD54F7D25A01820002E974C /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD54F7C25A01820002E974C /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +34,11 @@
 		4C068C522599778400811496 /* XcodeShortcutsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XcodeShortcutsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C068C542599778400811496 /* XcodeShortcutsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeShortcutsTests.swift; sourceTree = "<group>"; };
 		4C068C562599778400811496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CD54F6625A012AF002E974C /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
+		4CD54F6C25A012CD002E974C /* ShortcutPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutPrinter.swift; sourceTree = "<group>"; };
+		4CD54F7025A01507002E974C /* SessionPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPrinter.swift; sourceTree = "<group>"; };
+		4CD54F7425A015A6002E974C /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
+		4CD54F7C25A01820002E974C /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +81,11 @@
 			isa = PBXGroup;
 			children = (
 				4C068C462599777000811496 /* main.swift */,
+				4CD54F6625A012AF002E974C /* Shortcut.swift */,
+				4CD54F7425A015A6002E974C /* ShortcutManager.swift */,
+				4CD54F6C25A012CD002E974C /* ShortcutPrinter.swift */,
+				4CD54F7C25A01820002E974C /* Session.swift */,
+				4CD54F7025A01507002E974C /* SessionPrinter.swift */,
 			);
 			path = XcodeShortcuts;
 			sourceTree = "<group>";
@@ -173,6 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C068C472599777000811496 /* main.swift in Sources */,
+				4CD54F7125A01507002E974C /* SessionPrinter.swift in Sources */,
+				4CD54F7D25A01820002E974C /* Session.swift in Sources */,
+				4CD54F6725A012AF002E974C /* Shortcut.swift in Sources */,
+				4CD54F6D25A012CD002E974C /* ShortcutPrinter.swift in Sources */,
+				4CD54F7525A015A6002E974C /* ShortcutManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
