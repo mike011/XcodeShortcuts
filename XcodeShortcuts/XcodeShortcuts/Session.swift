@@ -24,10 +24,19 @@ struct Session {
         while !shuffled.isEmpty {
             var shortcut = shuffled.removeFirst()
 
-            let shortcutPrinter = ShortcutPrinter(shortcut: shortcut)
-            shortcutPrinter.printTitle()
+            var shortcutPrinter = ShortcutPrinter(shortcut: shortcut)
 
-            shortcut.askQuestion()
+            let group = DispatchGroup()
+            group.enter()
+
+            DispatchQueue.global(qos: .default).async {
+                shortcutPrinter.printTitle()
+                group.leave()
+            }
+
+            let answer = readLine()
+            shortcutPrinter.stop = true
+            shortcut.answerQuestion(with: answer)
 
             if shortcut.correct < shortcut.getTimesToAsk() {
                 shuffled.append(shortcut)

@@ -9,6 +9,7 @@ import Foundation
 
 struct ShortcutPrinter {
     var shortcut: Shortcut
+    var stop = false
 
     func printTitle() {
         print(shortcut.description + ": ", separator: "", terminator: "")
@@ -22,8 +23,9 @@ struct ShortcutPrinter {
 
         for _ in 0..<amount {
             print(". ", separator: "", terminator: "")
-            do {
-                sleep(1)
+            Thread.sleep(forTimeInterval: 1)
+            if stop {
+                return
             }
             total -= 1
         }

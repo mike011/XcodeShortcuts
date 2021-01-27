@@ -39,14 +39,17 @@ struct Shortcut {
         if allTimeTotal == 0 {
             return 3
         }
+        if allTimeCorrect > 15 {
+            return 1
+        }
+
         if allTimeCorrect > 4 {
             return 2
         }
         return 1
     }
 
-    mutating func askQuestion() {
-        let answer = readLine()
+    mutating func answerQuestion(with answer: String?) {
         if answer?.lowercased().trimmingCharacters(in: .whitespaces) == "y" {
             print("Yes you did")
             correct += 1
