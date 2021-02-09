@@ -12,6 +12,7 @@ struct SessionPrinter {
     let shortcuts: [Shortcut]
 
     func printSummary(start: Date) {
+        print("-------------------------------------------------")
         let totals = getTotals(for: shortcuts)
         print("Session Summary: ")
         print("\(totals.correct)/\(totals.total) for \(getPercentage(top: totals.correct, bottom: totals.total))%")
@@ -21,6 +22,7 @@ struct SessionPrinter {
 
         print("All Total Summary: ")
         print("\(totals.allTimeCorrect)/\(totals.allTimeTotal) for \(getPercentage(top: totals.allTimeCorrect, bottom: totals.allTimeTotal))%")
+        print("-------------------------------------------------")
     }
 
     func getPercentage(top: Int, bottom: Int) -> String {

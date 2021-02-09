@@ -13,22 +13,27 @@ struct ShortcutPrinter {
 
     func printTitle() {
         print(shortcut.description + ": ", separator: "", terminator: "")
-        printCountDown(duration: getTime())
-        print(shortcut.keys)
-        print("Did you get the right answer? y/n")
+        let earlyReturn = printCountDown(duration: getTime())
+        if !earlyReturn {
+            print(shortcut.keys)
+            print("Did you get the right answer? y/n")
+        }
     }
 
-    func printCountDown(duration amount: Int) {
+    func printCountDown(duration amount: Int) -> Bool {
         var total = amount
 
         for _ in 0..<amount {
             print(". ", separator: "", terminator: "")
-            Thread.sleep(forTimeInterval: 1)
+            Thread.sleep(forTimeInterval: 3)
             if stop {
-                return
+                print()
+                return true
             }
             total -= 1
         }
+        print()
+        return false
     }
 
     func getTime() -> Int {

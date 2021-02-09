@@ -16,7 +16,7 @@ public struct ShortcutManager {
     }
 
     mutating func go() {
-        session.askQuestion()
+        session.askQuestions()
         session.printResults()
     }
 }

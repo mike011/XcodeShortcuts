@@ -16,7 +16,7 @@ struct Session {
         self.shortcuts = shortcuts
     }
 
-    mutating func askQuestion() {
+    mutating func askQuestions() {
         print("What is the keyboard combination for: ")
 
         var shuffled = shortcuts.shuffled()
@@ -36,6 +36,7 @@ struct Session {
 
             let answer = readLine()
             shortcutPrinter.stop = true
+            print(shortcutPrinter.shortcut.keys)
             shortcut.answerQuestion(with: answer)
 
             if shortcut.correct < shortcut.getTimesToAsk() {
