@@ -12,7 +12,7 @@ struct ShortcutPrinter {
     var stop = false
 
     func printTitle() {
-        print(shortcut.description + ": ", separator: "", terminator: "")
+        print("=> \(shortcut.description): ", separator: "", terminator: "")
         let earlyReturn = printCountDown(duration: getTime())
         if !earlyReturn {
             print(shortcut.keys)

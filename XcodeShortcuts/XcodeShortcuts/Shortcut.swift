@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Identifies one keyboard combination to an action
 struct Shortcut {
     let description: String
     let keys: String
